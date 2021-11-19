@@ -8,7 +8,7 @@ interface IHeader {
 class ListUserLocationsController{
 
     async handle(req: Request, res: Response) {
-
+        
         const { user_id } = req as IHeader;
 
         const listUserLocationsService = new ListUserLocationsService();

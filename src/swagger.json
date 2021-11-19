@@ -405,6 +405,20 @@
                 "tags" : ["User", "Cameras"],
                 "summary" : "List all the cameras in a given location",
                 "description" : "List all of the cameras assigned to a specific location",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "location_id": {
+                                        "type" : "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses" : {
                     "200" : {
                         "description" : "Success",

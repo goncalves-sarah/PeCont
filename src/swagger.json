@@ -320,6 +320,15 @@
             }
         },
         "/cameras/connect/{camera_id}" : {
+            "parameters": [
+                {
+                    "name" : "camera_id",
+                    "in" : "path",
+                    "required" : true,
+                    "type" : "integer",
+                    "description" : "The camera id"
+                }
+            ],
             "post" : {
                 "security": {
                     "bearerAuth": []
@@ -327,15 +336,6 @@
                 "tags" : ["Cameras"],
                 "summary" : "Connect to a camera",
                 "description" : "Connect to a Camera and returns the pid for the camera process running in the background",
-                "parameters": {
-                    "in" : "path",
-                    "name" : "camera_id",
-                    "required" : true,
-                    "schema" : {
-                        "type" : "integer"
-                    },
-                    "description" : "The camera id"
-                },
                 "responses" : {
                     "200" : {
                         "description" : "Connected",
@@ -443,6 +443,15 @@
             }
         },
         "/cameras/{camera_id}" : {
+            "parameters": [
+                {
+                    "name" : "camera_id",
+                    "in" : "path",
+                    "required" : true,
+                    "type" : "integer",
+                    "description" : "The camera id"
+                }
+            ],
             "delete" : {
                 "security": {
                     "bearerAuth": []
@@ -450,15 +459,6 @@
                 "tags" : ["Cameras"],
                 "summary" : "Delete a camera",
                 "description" : "Delete a Camera",
-                "parameters": {
-                    "in" : "path",
-                    "name" : "camera_id",
-                    "required" : true,
-                    "schema" : {
-                        "type" : "integer"
-                    },
-                    "description" : "The camera id"
-                },
                 "responses" : {
                     "200" : {
                         "description" : "Deleted"

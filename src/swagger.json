@@ -1,0 +1,474 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+        "title" : "PeCont Documentation",
+        "description" : "This is an API that aims to count the total amount of people inside a given location. It works by using the video stream from a camera to capture the movements of the people coming in and out of the place.",
+        "version" : "1.0.0",
+        "contact" : {
+            "email" : "contado@desenvolvedor.com"
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"  
+            }            
+        }
+    },
+    "paths" : {
+        "/users" : {
+            "post" : {
+                "security": [] ,
+                "tags" : ["User"],
+                "summary" : "Create a user",
+                "description" : "Create a new User",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "name" : {
+                                        "type" : "string"
+                                    },
+                                    "email" : {
+                                        "type" : "string"
+                                    },
+                                    "password" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "example" : {
+                                    "name" : "João da Silva",
+                                    "email" : "silva@hotmail.com",
+                                    "password" : "minhaSenha"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "Created",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name" : {
+                                            "type" : "string"
+                                        },
+                                        "email" : {
+                                            "type" : "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Email not received"
+                    },
+                    "401" : {
+                        "description" : "User already exists"
+                    }
+                }
+            }
+        },
+        "/login" : {
+            "post" : {
+                "security": [] ,
+                "tags" : ["User"],
+                "summary" : "Sign in, generating token",
+                "description" : "Sign in for the user and create a jwt token",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "email" : {
+                                        "type" : "string"
+                                    },
+                                    "password" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "example" : {
+                                    "email" : "silva@hotmail.com",
+                                    "password" : "minhaSenha"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400" : {
+                        "description" : "Email/Password Incorrect"
+                    },
+                    "200" : {
+                        "description" : "Successful Login",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "token" : {
+                                            "type" : "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/locations" : {
+            "post" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["Locations"],
+                "summary" : "Create a location",
+                "description" : "Create a new Location",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "name": {
+                                        "type" : "string"
+                                    },
+                                    "total_people_inside" : {
+                                        "type" : "number"
+                                    },
+                                    "owner" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "example" : {
+                                    "name" : "Location 1",
+                                    "total_people_inside" : 0,
+                                    "owner" : "id from the user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "Created",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "total_people_inside" : {
+                                            "type" : "number"
+                                        },
+                                        "owner" : {
+                                            "type" : "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Location already exists"
+                    },
+                    "401" : {
+                        "description" : "Invalid User"
+                    }
+                }
+            }
+        },
+        "/users/locations" : {
+            "get" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["User", "Locations"],
+                "summary" : "List all user's locations",
+                "description" : "List all of the locations assigned to a specific user",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "id" : {
+                                                "type" : "string"
+                                            },
+                                            "name": {
+                                                "type" : "string"
+                                            },
+                                            "total_people_inside" : {
+                                                "type" : "number"
+                                            },
+                                            "owner" : {
+                                                "type" : "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cameras" : {
+            "post" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["Cameras"],
+                "summary" : "Create a camera",
+                "description" : "Create a new Camera",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "name": {
+                                        "type" : "string"
+                                    },
+                                    "location" : {
+                                        "type" : "string"
+                                    },
+                                    "status" : {
+                                        "type" : "number"
+                                    },
+                                    "ip" : {
+                                        "type" : "string"
+                                    },
+                                    "user" :{
+                                        "type" : "string"
+                                    }
+                                },
+                                "example" : {
+                                    "name" : "Camera 1",
+                                    "location" : "id from the location",
+                                    "status" : 0,
+                                    "ip" : "192.168.0.10",
+                                    "user" : "id from the user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "Created",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "location" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "number"
+                                        },
+                                        "ip" : {
+                                            "type" : "string"
+                                        },
+                                        "user" :{
+                                            "type" : "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Camera already exists"
+                    },
+                    "401" : {
+                        "description" : "Invalid User"
+                    },
+                    "402" : {
+                        "description" : "Invalid Location"
+                    }
+                }
+            }
+        },
+        "/cameras/connect/{camera_id}" : {
+            "post" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["Cameras"],
+                "summary" : "Connect to a camera",
+                "description" : "Connect to a Camera and returns the pid for the camera process running in the background",
+                "parameters": {
+                    "in" : "path",
+                    "name" : "camera_id",
+                    "required" : true,
+                    "schema" : {
+                        "type" : "integer"
+                    },
+                    "description" : "The camera id"
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Connected",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "pid" : {
+                                            "type" : "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500" : {
+                        "description" : "Something went wrong"
+                    }
+                }
+            }
+        },
+        "/cameras/disconnect" : {
+            "post" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["Cameras"],
+                "summary" : "Disconnect a camera",
+                "description" : "Disconnect a camera by killing the camera process",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "id": {
+                                        "type" : "string"
+                                    },
+                                    "pid" : {
+                                        "type" : "integer"
+                                    }
+                                },
+                                "example" : {
+                                    "id" : "Camera id",
+                                    "pid" : 1510
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Connected"
+                    },
+                    "400" : {
+                        "description" : "Process doesn't exists"
+                    }
+                }
+            }
+        },
+        "/users/locations/cameras" : {
+            "get" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["User", "Cameras"],
+                "summary" : "List all the cameras in a given location",
+                "description" : "List all of the cameras assigned to a specific location",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "id" : {
+                                                "type" : "string"
+                                            },
+                                            "name": {
+                                                "type" : "string"
+                                            },
+                                            "location" : {
+                                                "type" : "string"
+                                            },
+                                            "status" : {
+                                                "type" : "number"
+                                            },
+                                            "ip" : {
+                                                "type" : "string"
+                                            },
+                                            "user" :{
+                                                "type" : "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cameras/{camera_id}" : {
+            "delete" : {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags" : ["Cameras"],
+                "summary" : "Delete a camera",
+                "description" : "Delete a Camera",
+                "parameters": {
+                    "in" : "path",
+                    "name" : "camera_id",
+                    "required" : true,
+                    "schema" : {
+                        "type" : "integer"
+                    },
+                    "description" : "The camera id"
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Deleted"
+                    },
+                    "400" : {
+                        "description" : "Camera doesn't exists"
+                    }
+                }
+            }
+        }
+    }
+}
+

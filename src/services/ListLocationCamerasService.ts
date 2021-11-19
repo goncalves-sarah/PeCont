@@ -9,7 +9,7 @@ interface IUserRequest {
 class ListLocationsCamerasService {
 
     async execute({ location_id } : IUserRequest) {
-
+        
         const camerasRepository = getCustomRepository(CamerasRepository);
  
         const cameras = await camerasRepository.find({

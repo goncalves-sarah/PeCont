@@ -5,8 +5,8 @@ class ListLocationCamerasController{
 
     async handle(req: Request, res: Response) {
 
-        const { location_id } = req.body;
-
+        const { location_id } = req.params;
+    
         const listLocationsCamerasService = new ListLocationsCamerasService();
 
         const cameras = await listLocationsCamerasService.execute({location_id});

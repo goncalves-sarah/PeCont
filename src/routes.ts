@@ -56,7 +56,7 @@ const listLocationCamerasController = () => {
 
 router.get("/cameras/connect/:camera_id", ensureAuthenticated, turnCameraOnController().handle)
 router.get("/cameras/disconnect", ensureAuthenticated, turnCameraOffController().handle)
-router.get("/users/locations/cameras", ensureAuthenticated, listLocationCamerasController().handle)
+router.get("/users/:location_id/cameras", ensureAuthenticated, listLocationCamerasController().handle)
 router.get("/users/locations", ensureAuthenticated, listUserLocationsController().handle)
 
 router.post("/cameras", ensureAuthenticated, createCameraController().handle);

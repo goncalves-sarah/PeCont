@@ -131,9 +131,9 @@
         },
         "/locations" : {
             "post" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["Locations"],
                 "summary" : "Create a location",
                 "description" : "Create a new Location",
@@ -198,9 +198,9 @@
         },
         "/users/locations" : {
             "get" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["User", "Locations"],
                 "summary" : "List all user's locations",
                 "description" : "List all of the locations assigned to a specific user",
@@ -237,9 +237,9 @@
         },
         "/cameras" : {
             "post" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["Cameras"],
                 "summary" : "Create a camera",
                 "description" : "Create a new Camera",
@@ -325,14 +325,14 @@
                     "name" : "camera_id",
                     "in" : "path",
                     "required" : true,
-                    "type" : "integer",
+                    "type" : "string",
                     "description" : "The camera id"
                 }
             ],
             "post" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["Cameras"],
                 "summary" : "Connect to a camera",
                 "description" : "Connect to a Camera and returns the pid for the camera process running in the background",
@@ -360,9 +360,9 @@
         },
         "/cameras/disconnect" : {
             "post" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["Cameras"],
                 "summary" : "Disconnect a camera",
                 "description" : "Disconnect a camera by killing the camera process",
@@ -397,28 +397,23 @@
                 }
             }
         },
-        "/users/locations/cameras" : {
+        "/users/{location_id}/cameras" : {
+            "parameters": [
+                {
+                    "name" : "location_id",
+                    "in" : "path",
+                    "required" : true,
+                    "type" : "string",
+                    "description" : "The location id"
+                }
+            ],
             "get" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["User", "Cameras"],
                 "summary" : "List all the cameras in a given location",
                 "description" : "List all of the cameras assigned to a specific location",
-                "requestBody" : {
-                    "content" : {
-                        "application/json" : {
-                            "schema" : {
-                                "type" : "object",
-                                "properties" : {
-                                    "location_id": {
-                                        "type" : "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses" : {
                     "200" : {
                         "description" : "Success",
@@ -462,14 +457,14 @@
                     "name" : "camera_id",
                     "in" : "path",
                     "required" : true,
-                    "type" : "integer",
+                    "type" : "string",
                     "description" : "The camera id"
                 }
             ],
             "delete" : {
-                "security": {
+                "security": [{
                     "bearerAuth": []
-                },
+                }],
                 "tags" : ["Cameras"],
                 "summary" : "Delete a camera",
                 "description" : "Delete a Camera",

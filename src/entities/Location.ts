@@ -15,6 +15,9 @@ class Location {
     total_people_inside: number;
 
     @Column()
+    total_capacity: number;
+
+    @Column()
     owner: string;
 
     @JoinColumn({ name: "owner"})

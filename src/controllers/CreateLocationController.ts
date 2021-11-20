@@ -7,7 +7,7 @@ interface IHeader {
 
 class CreateLocationController{
     async handle(req: Request, res: Response) {
-        const { name, total_people_inside } = req.body;
+        const { name, total_people_inside, total_capacity } = req.body;
         const { user_id } = req as IHeader;
 
         const createLocationService = new CreateLocationService();
@@ -15,6 +15,7 @@ class CreateLocationController{
         const location = await createLocationService.execute({
             name, 
             total_people_inside,
+            total_capacity,
             owner : user_id
         });
         

@@ -149,14 +149,14 @@
                                     "total_people_inside" : {
                                         "type" : "number"
                                     },
-                                    "owner" : {
-                                        "type" : "string"
+                                    "total_capacity" : {
+                                        "type" : "number"
                                     }
                                 },
                                 "example" : {
                                     "name" : "Location 1",
                                     "total_people_inside" : 0,
-                                    "owner" : "id from the user"
+                                    "total_capacity" : 50
                                 }
                             }
                         }
@@ -181,6 +181,9 @@
                                         },
                                         "owner" : {
                                             "type" : "string"
+                                        },
+                                        "total_capacity" : {
+                                            "type" : "number"
                                         }
                                     }
                                 }
@@ -192,6 +195,54 @@
                     },
                     "401" : {
                         "description" : "Invalid User"
+                    }
+                }
+            }
+        },
+        "/locations/{location_id}" : {
+            "parameters": [
+                {
+                    "name" : "location_id",
+                    "in" : "path",
+                    "required" : true,
+                    "type" : "string",
+                    "description" : "The location id"
+                }
+            ],
+            "post" : {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["Cameras"],
+                "summary" : "List a specific Location",
+                "description" : "List a specific Location through its id",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "total_people_inside" : {
+                                            "type" : "number"
+                                        },
+                                        "owner" : {
+                                            "type" : "string"
+                                        },
+                                        "total_capacity" : {
+                                            "type" : "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -223,6 +274,9 @@
                                             "total_people_inside" : {
                                                 "type" : "number"
                                             },
+                                            "total_capacity" : {
+                                                "type" : "number"
+                                            },
                                             "owner" : {
                                                 "type" : "string"
                                             }
@@ -230,6 +284,74 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/cameras" : {
+            "get" : {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["User", "Cameras"],
+                "summary" : "List all user's cameras",
+                "description" : "List all of the cameras assingned to a specific user, from all their locations",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "id" : {
+                                                "type" : "string"
+                                            },
+                                            "name": {
+                                                "type" : "string"
+                                            },
+                                            "location" : {
+                                                "type" : "string"
+                                            },
+                                            "status" : {
+                                                "type" : "number"
+                                            },
+                                            "ip" : {
+                                                "type" : "string"
+                                            },
+                                            "user" :{
+                                                "type" : "string"
+                                            },
+                                            "pid" : {
+                                                "type" : "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/cameras/off" : {
+            "post" : {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["User", "Cameras"],
+                "summary" : "Turn off all the user cameras",
+                "description" : "Turn off all of the cameras assigned to a specific user, from all their locations",
+                "responses" : {
+                    "responses" : {
+                        "200" : {
+                            "description" : "Disconnected"
+                        },
+                        "400" : {
+                            "description" : "Process doesn't exists"
                         }
                     }
                 }
@@ -252,7 +374,7 @@
                                     "name": {
                                         "type" : "string"
                                     },
-                                    "location" : {
+                                    "location_id" : {
                                         "type" : "string"
                                     },
                                     "status" : {
@@ -260,17 +382,13 @@
                                     },
                                     "ip" : {
                                         "type" : "string"
-                                    },
-                                    "user" :{
-                                        "type" : "string"
                                     }
                                 },
                                 "example" : {
                                     "name" : "Camera 1",
-                                    "location" : "id from the location",
+                                    "location_id" : "id from the location",
                                     "status" : 0,
-                                    "ip" : "192.168.0.10",
-                                    "user" : "id from the user"
+                                    "ip" : "192.168.0.10"
                                 }
                             }
                         }
@@ -301,6 +419,9 @@
                                         },
                                         "user" :{
                                             "type" : "string"
+                                        },
+                                        "pid" :{
+                                            "type" : "number"
                                         }
                                     }
                                 }
@@ -338,19 +459,7 @@
                 "description" : "Connect to a Camera and returns the pid for the camera process running in the background",
                 "responses" : {
                     "200" : {
-                        "description" : "Connected",
-                        "content" : {
-                            "application/json" : {
-                                "schema" : {
-                                    "type" : "object",
-                                    "properties" : {
-                                        "pid" : {
-                                            "type" : "number"
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        "description" : "Connected"
                     },
                     "500" : {
                         "description" : "Something went wrong"
@@ -374,14 +483,10 @@
                                 "properties" : {
                                     "id": {
                                         "type" : "string"
-                                    },
-                                    "pid" : {
-                                        "type" : "integer"
                                     }
                                 },
                                 "example" : {
-                                    "id" : "Camera id",
-                                    "pid" : 1510
+                                    "id" : "Camera id"
                                 }
                             }
                         }
@@ -389,7 +494,7 @@
                 },
                 "responses" : {
                     "200" : {
-                        "description" : "Connected"
+                        "description" : "Disconnected"
                     },
                     "400" : {
                         "description" : "Process doesn't exists"
@@ -441,6 +546,9 @@
                                             },
                                             "user" :{
                                                 "type" : "string"
+                                            },
+                                            "pid" : {
+                                                "type" : "number"
                                             }
                                         }
                                     }

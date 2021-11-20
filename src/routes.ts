@@ -11,6 +11,9 @@ import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 import { AuthenticateUserController } from './controllers/AuthenticateUserController';
 import { ListUserLocationsController } from './controllers/ListUserLocationsController';
 import { ListLocationCamerasController } from './controllers/ListLocationCamerasController';
+import { ListAllUserCamerasController } from './controllers/ListAllUserCamerasController';
+import { TurnOffAllCamerasController } from './controllers/TurnOffAllCamerasController';
+import { ListLocationByIdController } from './controllers/ListLocationByIdController';
 
 const router = Router();
 
@@ -54,14 +57,30 @@ const listLocationCamerasController = () => {
     return new ListLocationCamerasController()
 }
 
+const listAllUserCamerasController = () => {
+    return new ListAllUserCamerasController()
+}
+
+const turnOffAllCamerasController = () => {
+    return new TurnOffAllCamerasController()
+}
+
+const listLocationByIdController = () => {
+    return new ListLocationByIdController()
+}
+
+
 router.get("/cameras/connect/:camera_id", ensureAuthenticated, turnCameraOnController().handle)
 router.get("/cameras/disconnect", ensureAuthenticated, turnCameraOffController().handle)
 router.get("/users/:location_id/cameras", ensureAuthenticated, listLocationCamerasController().handle)
+router.get("/users/cameras", ensureAuthenticated, listAllUserCamerasController().handle)
 router.get("/users/locations", ensureAuthenticated, listUserLocationsController().handle)
+router.get('/locations/:location_id', ensureAuthenticated, listLocationByIdController().handle)
 
 router.post("/cameras", ensureAuthenticated, createCameraController().handle);
 router.post("/locations/update/total",updatePeopleInsideLocationController().handle)
 router.post("/locations", ensureAuthenticated, createLocationController().handle);
+router.post("/users/cameras/off", ensureAuthenticated, turnOffAllCamerasController().handle);
 router.post("/users", createUserController().handle);
 router.post("/login", authenticateUserController().handle);
 

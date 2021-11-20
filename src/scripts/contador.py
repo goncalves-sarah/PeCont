@@ -129,7 +129,13 @@ while 1:
     if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
         time_start = time.time()
         camera_id = str(sys.argv[1])
-        
+        location_id = str(sys.argv[2]);
+
+        r = requests.get(f"http://localhost:8000/locations/{location_id}")
+        location = r.json()
+
+        total = location['results'][0].total_people_inside + total
+
         requests.post("http://localhost:8000/locations/update/total",json = {
             "camera_id" : camera_id,
             "new_amount" : str(total)

@@ -6,17 +6,23 @@ import { Errors } from "../errors";
 
 interface ICameraDisconnectRequest {
     id : string;
-    pid: number;
 }
 
 class TurnCameraOffService {
 
-    async execute({ id, pid } : ICameraDisconnectRequest) {
+    async execute({ id } : ICameraDisconnectRequest) {
 
         const camerasRepository = getCustomRepository(CamerasRepository);
 
+        const { pid } = await camerasRepository.findOne({
+            where: {
+                id : id
+            }
+        });
+
         await camerasRepository.update(id,{
-            status: 0
+            status: 0,
+            pid: 0
         })
         
         try {

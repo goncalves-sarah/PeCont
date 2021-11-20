@@ -26,6 +26,9 @@ class Camera {
     ip: string;
 
     @Column()
+    pid: number;
+
+    @Column()
     user: string;
 
     @JoinColumn({ name: "user"})

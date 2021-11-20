@@ -6,12 +6,13 @@ import { UsersRepository } from "../repositories/UsersRepository";
 interface ILocationRequest {
     name: string;
     total_people_inside?: number;
+    total_capacity: number;
     owner: string;
 }
 
 class CreateLocationService {
 
-    async execute({ name, total_people_inside = 0, owner } : ILocationRequest) {
+    async execute({ name, total_people_inside = 0, owner, total_capacity } : ILocationRequest) {
 
         const usersRepository = getCustomRepository(UsersRepository);
         const locationsRepository = getCustomRepository(LocationsRepository);
@@ -33,6 +34,7 @@ class CreateLocationService {
         const location = locationsRepository.create({
             name, 
             total_people_inside,
+            total_capacity,
             owner
         });
 

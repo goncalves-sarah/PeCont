@@ -8,11 +8,11 @@ class TurnCameraOnController{
         
         const turnCameraOnService = new TurnCameraOnService();
 
-        const pid = await turnCameraOnService.execute({
+        await turnCameraOnService.execute({
             id : camera_id
         });
         
-        return res.status(200).json({"pid": pid});
+        return res.status(200).send();
     }
 }
 

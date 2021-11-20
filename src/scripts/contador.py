@@ -16,7 +16,7 @@ def center(x, y, w, h):
     cy = y + y1
     return cx,cy
 
-camera_ip = str(sys.argv[2])
+camera_ip = str(sys.argv[1])
 cap = cv2.VideoCapture(camera_ip) 
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
@@ -103,14 +103,14 @@ while 1:
                 if detect[c-1][1] < posL and l[1] > posL :
                     detect.clear()
                     outside+=1
-                    total = abs(inside - outside)
+                    total = inside - outside
                     cv2.line(frame,xy1,xy2,(0,255,0),5)
                     continue
 
                 if detect[c-1][1] > posL and l[1] < posL:
                     detect.clear()
                     inside+=1
-                    total = abs(inside - outside)
+                    total = inside - outside
                     cv2.line(frame,xy1,xy2,(0,0,255),5)
                     continue
 
@@ -128,13 +128,7 @@ while 1:
     
     if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
         time_start = time.time()
-        camera_id = str(sys.argv[1])
-        location_id = str(sys.argv[2]);
-
-        r = requests.get(f"http://localhost:8000/locations/{location_id}")
-        location = r.json()
-
-        total = location['results'][0].total_people_inside + total
+        camera_id = str(sys.argv[2]);
 
         requests.post("http://localhost:8000/locations/update/total",json = {
             "camera_id" : camera_id,

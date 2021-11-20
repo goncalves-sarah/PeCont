@@ -3,7 +3,6 @@ import { CamerasRepository } from "../repositories/CamerasRepository";
 import { exec } from "child_process"
 import { Errors } from "../errors";
 
-
 interface ICameraDisconnectRequest {
     id : string;
 }

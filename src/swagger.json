@@ -209,7 +209,7 @@
                     "description" : "The location id"
                 }
             ],
-            "post" : {
+            "get" : {
                 "security": [{
                     "bearerAuth": []
                 }],
@@ -459,7 +459,37 @@
                 "description" : "Connect to a Camera and returns the pid for the camera process running in the background",
                 "responses" : {
                     "200" : {
-                        "description" : "Connected"
+                        "description" : "Connected",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "location" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "number"
+                                        },
+                                        "ip" : {
+                                            "type" : "string"
+                                        },
+                                        "user" :{
+                                            "type" : "string"
+                                        },
+                                        "pid" :{
+                                            "type" : "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "500" : {
                         "description" : "Something went wrong"
@@ -481,12 +511,12 @@
                             "schema" : {
                                 "type" : "object",
                                 "properties" : {
-                                    "id": {
+                                    "camera_id": {
                                         "type" : "string"
                                     }
                                 },
                                 "example" : {
-                                    "id" : "Camera id"
+                                    "camera_id" : "Camera id"
                                 }
                             }
                         }

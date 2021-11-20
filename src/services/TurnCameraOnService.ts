@@ -17,12 +17,17 @@ class TurnCameraOnService {
         
         //spawn new child process to call the python script
         try{
-            const python = spawn('python', ['src/scripts/contador.py',id,camera.ip,camera.location]);
+            const python = spawn('python', ['src/scripts/contador.py',camera.ip,id],{detached: true});
 
             await camerasRepository.update(id,{
                 status: 1,
                 pid: python.pid
             });
+
+            camera.status = 1;
+            camera.pid = python.pid;
+
+            return camera;
 
         } catch (e) {
             throw new Errors(500,"Houve um problema no servidor");

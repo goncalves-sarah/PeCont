@@ -22,11 +22,20 @@ class UpdatePeopleInsideLocationService {
 
         const location = await locationsRepository.findOne(camera.location)
 
+        let newTotal = +location.total_people_inside + +new_amount
+
+        if(newTotal < 0) {
+            newTotal = 0
+        }
+
+        console.log(newTotal)
+
         await locationsRepository.update(location.id,{
-            total_people_inside: new_amount
+            
+            total_people_inside: newTotal
         })
 
-        location.total_people_inside = new_amount;
+        location.total_people_inside = newTotal
 
         return location;
     }

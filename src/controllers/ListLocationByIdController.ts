@@ -6,8 +6,7 @@ class ListLocationByIdController{
     async handle(req: Request, res: Response) {
         
         const { location_id } = req.params;
-        console.log(location_id)
-
+        
         const listLocationByIdService = new ListLocationByIdService();
 
         const location = await listLocationByIdService.execute({ location_id });

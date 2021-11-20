@@ -17,7 +17,7 @@ class ListLocationByIdService {
                 id: location_id
             }
         });
-        console.log(location)
+       
         //classToPlain é usado para criar novos objetos se baseando nos antigos, mas com os novos atribs do class-transformer inseridos dentro da entity
         return classToPlain(location); 
     }

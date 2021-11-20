@@ -138,7 +138,7 @@ while True:
         
         requests.post("http://localhost:8000/locations/update/total",json = {
             "camera_id" : camera_id,
-            "new_amount" : str(total)
+            "new_amount" : total
         })
 
         sys.stdout.flush()

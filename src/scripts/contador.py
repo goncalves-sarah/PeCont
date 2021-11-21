@@ -142,7 +142,7 @@ while 1:
     if cv2.waitKey(30) & 0xFF == ord('q'):
         break
 
-requests.post("http://localhost:8000/cameras/update",json = {
+requests.put("http://localhost:8000/cameras",json = {
     "camera_id" : camera_id,
     "atribute" : {
         "status" : 0

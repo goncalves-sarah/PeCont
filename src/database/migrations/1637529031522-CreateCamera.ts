@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateCamera1635709875465 implements MigrationInterface {
+export class CreateCamera1637529031522 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -50,7 +50,7 @@ export class CreateCamera1635709875465 implements MigrationInterface {
                         referencedTableName: "users",
                         referencedColumnNames: ["id"],
                         columnNames: ["user"],
-                        onDelete: "SET NULL",
+                        onDelete: "CASCADE",
                         onUpdate: "SET NULL"
                     },
                     {
@@ -58,7 +58,7 @@ export class CreateCamera1635709875465 implements MigrationInterface {
                         referencedTableName: "locations",
                         referencedColumnNames: ["id"],
                         columnNames: ["location"],
-                        onDelete: "SET NULL",
+                        onDelete: "CASCADE",
                         onUpdate: "SET NULL"
                     },
                 ]
@@ -69,6 +69,5 @@ export class CreateCamera1635709875465 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("cameras");
     }
-
 
 }

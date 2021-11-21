@@ -78,6 +78,19 @@
                         "description" : "User already exists"
                     }
                 }
+            },
+            "delete" : {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["User"],
+                "summary" : "Delete a user",
+                "description" : "Delete a User",
+                "responses" : {
+                    "204" : {
+                        "description" : "Deleted"
+                    }
+                }
             }
         },
         "/login" : {
@@ -438,10 +451,8 @@
                         "description" : "Invalid Location"
                     }
                 }
-            }
-        },
-        "/cameras/update" : {
-            "post": {
+            },
+            "put": {
                 "security": [{
                     "bearerAuth": []
                 }],

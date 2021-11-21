@@ -16,6 +16,7 @@ import { TurnOffAllCamerasController } from './controllers/TurnOffAllCamerasCont
 import { ListLocationByIdController } from './controllers/ListLocationByIdController';
 import { UpdateCameraController } from './controllers/UpdateCameraController';
 import { ListCameraByIdController } from './controllers/ListCameraByIdController';
+import { DeleteUserController } from './controllers/DeleteUserController';
 
 const router = Router();
 
@@ -79,6 +80,10 @@ const updateCameraController = () => {
     return new UpdateCameraController()
 }
 
+const deleteUserController = () => {
+    return new DeleteUserController()
+}
+
 router.get("/users/:location_id/cameras", ensureAuthenticated, listLocationCamerasController().handle)
 router.get("/users/cameras", ensureAuthenticated, listAllUserCamerasController().handle)
 router.get("/users/locations", ensureAuthenticated, listUserLocationsController().handle)
@@ -87,7 +92,6 @@ router.get('/cameras/:camera_id', ensureAuthenticated, listCameraByIdController(
 
 router.post("/cameras/connect/:camera_id", ensureAuthenticated, turnCameraOnController().handle)
 router.post("/cameras/disconnect", ensureAuthenticated, turnCameraOffController().handle)
-router.post("/cameras/update", ensureAuthenticated, updateCameraController().handle);
 router.post("/cameras", ensureAuthenticated, createCameraController().handle);
 router.post("/locations/update/total", ensureAuthenticated, updatePeopleInsideLocationController().handle)
 router.post("/locations", ensureAuthenticated, createLocationController().handle);
@@ -95,6 +99,9 @@ router.post("/users/cameras/off", ensureAuthenticated, turnOffAllCamerasControll
 router.post("/users", createUserController().handle);
 router.post("/login", authenticateUserController().handle);
 
+router.put("/cameras", ensureAuthenticated, updateCameraController().handle);
+
 router.delete("/cameras/:camera_id", ensureAuthenticated, deleteCameraController().handle)
+router.delete("/users", ensureAuthenticated, deleteUserController().handle)
 
 export { router };

@@ -44,7 +44,8 @@ class CreateCameraService {
             location, 
             status, 
             ip, 
-            user
+            user,
+            pid : 0
         });
 
         await camerasRepository.save(camera);

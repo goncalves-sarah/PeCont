@@ -1,12 +1,12 @@
 import {MigrationInterface, QueryRunner, TableColumn} from "typeorm";
 
-export class AddPidCamera1637432013090 implements MigrationInterface {
+export class AddTotalCapacityLocation1637529227847 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn(
-            "cameras",
+            "locations",
             new TableColumn({
-                name : "pid",
+                name : "total_capacity",
                 "type" : "int",
                 "default" : 0
             })
@@ -14,7 +14,7 @@ export class AddPidCamera1637432013090 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropColumn("cameras","pid");
+        await queryRunner.dropColumn("locations","total_capacity");
     }
 
 }

@@ -9,7 +9,8 @@ class TurnCameraOnController{
         const turnCameraOnService = new TurnCameraOnService();
 
         const camera = await turnCameraOnService.execute({
-            id : camera_id
+            id : camera_id,
+            token : req.headers.authorization
         });
         
         return res.status(200).json(camera);

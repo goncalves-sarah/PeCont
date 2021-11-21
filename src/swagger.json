@@ -438,8 +438,10 @@
                         "description" : "Invalid Location"
                     }
                 }
-            },
-            "patch": {
+            }
+        },
+        "/cameras/update" : {
+            "post": {
                 "security": [{
                     "bearerAuth": []
                 }],

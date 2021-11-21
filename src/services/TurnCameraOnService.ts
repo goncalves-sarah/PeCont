@@ -5,11 +5,12 @@ import { Errors } from "../errors";
 
 interface ICameraRequest {
     id: string;
+    token : string;
 }
 
 class TurnCameraOnService {
 
-    async execute({ id } : ICameraRequest) {
+    async execute({ id, token } : ICameraRequest) {
 
         const camerasRepository = getCustomRepository(CamerasRepository);
 
@@ -17,7 +18,7 @@ class TurnCameraOnService {
         
         //spawn new child process to call the python script
         try{
-            const python = spawn('python', ['src/scripts/contador.py',camera.ip,id],{detached: true});
+            const python = spawn('python', ['src/scripts/contador.py',camera.ip,id,token],{detached: true});
 
             await camerasRepository.update(id,{
                 status: 1,

@@ -17,9 +17,6 @@ def center(x, y, w, h):
     return cx,cy
 
 camera_ip = str(sys.argv[1])
-camera_id = str(sys.argv[2])
-token = str(sys.argv[3])
-
 cap = cv2.VideoCapture(camera_ip) 
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
@@ -129,25 +126,30 @@ while 1:
     current_time = time.time()
     current_interval = current_time - time_start
     
-    if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
-        time_start = time.time()
+    # if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
+    #     time_start = time.time()
+    #     camera_id = str(sys.argv[2])
 
-        requests.post("http://localhost:8000/locations/update/total",json = {
-            "camera_id" : camera_id,
-            "new_amount" : str(total)
-        }, headers={'Authorization': f'{token}'})
+    #     requests.post("http://localhost:8000/locations/update/total",json = {
+    #         "camera_id" : camera_id,
+    #         "new_amount" : str(total)
+    #     })
 
-        sys.stdout.flush()
+    #     sys.stdout.flush()
 
     if cv2.waitKey(30) & 0xFF == ord('q'):
         break
 
-requests.post("http://localhost:8000/cameras/update",json = {
+camera_id = str(sys.argv[2])
+
+r = requests.post("http://localhost:8000/cameras/update",json = {
     "camera_id" : camera_id,
     "atribute" : {
         "status" : 0
     }
-}, headers={'Authorization': f'{token}'})
+})
 
+print(r.json())
+print("chegou")
 cap.release()
 cv2.destroyAllWindows()

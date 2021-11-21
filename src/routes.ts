@@ -87,14 +87,13 @@ router.get('/cameras/:camera_id', ensureAuthenticated, listCameraByIdController(
 
 router.post("/cameras/connect/:camera_id", ensureAuthenticated, turnCameraOnController().handle)
 router.post("/cameras/disconnect", ensureAuthenticated, turnCameraOffController().handle)
+router.post("/cameras/update", ensureAuthenticated, updateCameraController().handle);
 router.post("/cameras", ensureAuthenticated, createCameraController().handle);
-router.post("/locations/update/total",updatePeopleInsideLocationController().handle)
+router.post("/locations/update/total", ensureAuthenticated, updatePeopleInsideLocationController().handle)
 router.post("/locations", ensureAuthenticated, createLocationController().handle);
 router.post("/users/cameras/off", ensureAuthenticated, turnOffAllCamerasController().handle);
 router.post("/users", createUserController().handle);
 router.post("/login", authenticateUserController().handle);
-
-router.patch("/cameras", ensureAuthenticated, updateCameraController().handle);
 
 router.delete("/cameras/:camera_id", ensureAuthenticated, deleteCameraController().handle)
 

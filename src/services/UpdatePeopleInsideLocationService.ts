@@ -28,7 +28,6 @@ class UpdatePeopleInsideLocationService {
             newTotal = 0
         }
 
-        console.log(newTotal)
 
         await locationsRepository.update(location.id,{
             

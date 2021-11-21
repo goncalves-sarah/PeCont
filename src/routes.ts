@@ -14,6 +14,8 @@ import { ListLocationCamerasController } from './controllers/ListLocationCameras
 import { ListAllUserCamerasController } from './controllers/ListAllUserCamerasController';
 import { TurnOffAllCamerasController } from './controllers/TurnOffAllCamerasController';
 import { ListLocationByIdController } from './controllers/ListLocationByIdController';
+import { UpdateCameraController } from './controllers/UpdateCameraController';
+import { ListCameraByIdController } from './controllers/ListCameraByIdController';
 
 const router = Router();
 
@@ -69,10 +71,19 @@ const listLocationByIdController = () => {
     return new ListLocationByIdController()
 }
 
+const listCameraByIdController = () => {
+    return new ListCameraByIdController()
+}
+
+const updateCameraController = () => {
+    return new UpdateCameraController()
+}
+
 router.get("/users/:location_id/cameras", ensureAuthenticated, listLocationCamerasController().handle)
 router.get("/users/cameras", ensureAuthenticated, listAllUserCamerasController().handle)
 router.get("/users/locations", ensureAuthenticated, listUserLocationsController().handle)
 router.get('/locations/:location_id', ensureAuthenticated, listLocationByIdController().handle)
+router.get('/cameras/:camera_id', ensureAuthenticated, listCameraByIdController().handle)
 
 router.post("/cameras/connect/:camera_id", ensureAuthenticated, turnCameraOnController().handle)
 router.post("/cameras/disconnect", ensureAuthenticated, turnCameraOffController().handle)
@@ -82,6 +93,8 @@ router.post("/locations", ensureAuthenticated, createLocationController().handle
 router.post("/users/cameras/off", ensureAuthenticated, turnOffAllCamerasController().handle);
 router.post("/users", createUserController().handle);
 router.post("/login", authenticateUserController().handle);
+
+router.patch("/cameras", ensureAuthenticated, updateCameraController().handle);
 
 router.delete("/cameras/:camera_id", ensureAuthenticated, deleteCameraController().handle)
 

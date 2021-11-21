@@ -213,7 +213,7 @@
                 "security": [{
                     "bearerAuth": []
                 }],
-                "tags" : ["Cameras"],
+                "tags" : ["Locations"],
                 "summary" : "List a specific Location",
                 "description" : "List a specific Location through its id",
                 "responses" : {
@@ -438,6 +438,80 @@
                         "description" : "Invalid Location"
                     }
                 }
+            },
+            "patch": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["Cameras"],
+                "summary" : "Update a camera",
+                "description" : "Update a existing Camera. Somente os params status, name, ip e location podem ser alterados",
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "camera_id": {
+                                        "type" : "string"
+                                    },
+                                    "atribute" : {
+                                        "type" : "object",
+                                        "description" : "Put in json format the field you want to update"
+                                    }
+                                },
+                                "example" : {
+                                    "camera_id" : "id from the camera",
+                                    "atribute" : {
+                                        "status" : 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Updated",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "location" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "number"
+                                        },
+                                        "ip" : {
+                                            "type" : "string"
+                                        },
+                                        "user" :{
+                                            "type" : "string"
+                                        },
+                                        "pid" :{
+                                            "type" : "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Camera already exists"
+                    },
+                    "404" : {
+                        "description" : "This parameter cannot be altered"
+                    }
+                }
+
             }
         },
         "/cameras/connect/{camera_id}" : {
@@ -612,6 +686,49 @@
                     },
                     "400" : {
                         "description" : "Camera doesn't exists"
+                    }
+                }
+            },
+            "get" : {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags" : ["Cameras"],
+                "summary" : "List a specific Camera",
+                "description" : "List a specific Camera through its id",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "name": {
+                                            "type" : "string"
+                                        },
+                                        "location" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "number"
+                                        },
+                                        "ip" : {
+                                            "type" : "string"
+                                        },
+                                        "user" :{
+                                            "type" : "string"
+                                        },
+                                        "pid" :{
+                                            "type" : "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

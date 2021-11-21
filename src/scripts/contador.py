@@ -140,5 +140,12 @@ while 1:
     if cv2.waitKey(30) & 0xFF == ord('q'):
         break
 
+requests.patch("http://localhost:8000/cameras",json = {
+    "camera_id" : camera_id,
+    "atribute" : {
+        "status" : 0
+    }
+})
+
 cap.release()
 cv2.destroyAllWindows()

@@ -54,7 +54,7 @@ Back-end
   $ yarn start 
 ```
 
-Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/http-server).
+Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/http-server), porém você pode usar o método de sua prefêrencia.
 
 Front-end
 ```sh

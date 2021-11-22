@@ -44,13 +44,15 @@
 
 2. Executando a aplicação:
 
-Back-end
 ```sh
   # Instalando as dependências do projeto.
   $ yarn # ou npm install
-  
+```
+
+Back-end
+```sh
   # Inicie a API
-  # ./backend/
+  # cd /backend
   $ yarn start 
 ```
 
@@ -59,6 +61,6 @@ Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/h
 Front-end
 ```sh
   # Inicie o front-end
-  # ./fronted/
+  # cd /fronted
   $ http-server -c-1
 ```

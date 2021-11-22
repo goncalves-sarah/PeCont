@@ -23,6 +23,7 @@
 -  [Swagger](https://swagger.io/)
 -  [Python](https://www.python.org/)
 -  [OpenCV-Python](https://pypi.org/project/opencv-python/)
+-  [Axios](https://axios-http.com/docs/intro)
 
 ## :boom: Como Executar
 
@@ -32,6 +33,7 @@
   - É **necessário** possuir o **[Git](https://git-scm.com/)** instalado e configurado no computador
   - É **necessário** possuir o **[Python](https://www.python.org/)** instalado e configurado no computador
   - É **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
+  - É **preciso** ter o **[Axios](https://axios-http.com/docs/intro)** instalado.
   - Por fim, é **essencial** ter o **[OpenCV](https://pypi.org/project/opencv-python/)** instalado de forma global na máquina (Instalado pelo pip do Python) 
 
 1. Faça um clone do repositório:
@@ -42,10 +44,21 @@
 
 2. Executando a aplicação:
 
+Back-end
 ```sh
   # Instalando as dependências do projeto.
   $ yarn # ou npm install
   
   # Inicie a API
+  # ./backend/
   $ yarn start 
+```
+
+Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/http-server).
+
+Front-end
+```sh
+  # Inicie o front-end
+  # ./fronted/
+  $ http-server -c-1
 ```

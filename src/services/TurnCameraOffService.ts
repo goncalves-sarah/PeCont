@@ -13,26 +13,27 @@ class TurnCameraOffService {
 
         const camerasRepository = getCustomRepository(CamerasRepository);
 
-        const { pid } = await camerasRepository.findOne({
+        const { status, pid } = await camerasRepository.findOne({
             where: {
                 id : id
             }
         });
 
-        await camerasRepository.update(id,{
-            status: 0,
-            pid: 0
-        })
-        
-        try {
+        if(status != 0 && pid != 0) {
+            await camerasRepository.update(id,{
+                status: 0,
+                pid: 0
+            })
             
-            process.kill(pid,0)
-            
-            exec("taskkill /F /PID " + pid)
-        } catch (err) {
-            throw new Errors(400,"Process doesn't exists")
+            try {
+                
+                process.kill(pid,0)
+                
+                exec("taskkill /F /PID " + pid)
+            } catch (err) {
+                throw new Errors(400,"Process doesn't exists")
+            }    
         }
-    
     }
 }
 

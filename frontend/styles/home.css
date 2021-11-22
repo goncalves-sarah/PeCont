@@ -1,0 +1,638 @@
+body{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+}
+
+.container{
+    width:100%;
+    display: flex;
+}
+
+.count-container{
+    width:44%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 7rem;
+}
+
+.count-container>div{  
+    display: flex;
+}
+
+.progress-circle{
+    width:100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}
+
+.progress-circle>p{
+    font-size: 1.8rem;
+}
+
+@keyframes growProgressBar {
+    0%, 33% { --pgPercentage: 0; }
+    100% { --pgPercentage: var(--value); }
+}
+
+div[role="progressbar"] {
+    --size: 18rem;
+    --fg: #369;
+    --bg: #def;
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+      ;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 5);
+    color: var(--fg);
+}
+  
+div[role="progressbar"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
+}
+
+.summary{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    height: 35vh;
+    margin-left: 1rem;
+    box-shadow: 3px 4px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
+.summary>h2{
+    margin-left: 3rem;
+}
+
+.summary>div{
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.flow{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.flow>p:first-child{
+    color: green;
+}
+
+.flow>p:last-child{
+    color: red;
+}
+
+.statistics{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistics>h2{
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.statistics>p{
+    font-size: 1.2rem;
+    width: 80%;
+    text-align: center;
+}
+
+/* --------------- CAMERAS -------------- */
+
+.camera-container{
+    display: flex;
+    flex-direction: column;
+    width: 44%;
+}
+
+.camera-container>div{
+    width:100%;
+    display: flex;
+}
+
+.camera-header{
+    margin-top: 6rem;
+    align-items: center;
+}
+
+.camera-header>h2{
+    font-size: 2rem;
+}
+
+.camera-header>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-left: auto;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.camera-list{
+    margin-top: 1rem;
+    flex-direction: column;
+    overflow-y:visible;
+}
+
+.camera{
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding-left: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.camera>summary{
+    display: flex;
+    align-items: center;
+}
+
+.camera>summary>p{
+    font-size: 1.2rem;
+}
+
+.camera>summary>div{
+    height: 1rem;
+    width: 1rem;
+    margin-left: auto;
+    margin-right: 1.5rem;
+    border-radius: 50%;
+}
+
+.camera>div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.camera>div>div{
+    width: 45%;
+    height: 100%;
+}
+
+.camera>div>div>button{
+    height: 2rem;
+    width: 7rem;
+    margin-top: 1rem;
+    border: 1px solid darkred;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.camera>div>div>button:hover,
+.camera>div>div>button:focus{
+    background-color: rgb(243, 98, 98);
+}
+
+.camera>div>div:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.on{
+    background-color: rgb(22, 224, 22);
+}
+
+.off{
+    background-color: red;
+}
+
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+display: none;
+}
+
+.empty-cameraList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40%;
+}
+
+.empty-cameraList>div{
+    height: 90%;
+}
+
+.empty-cameraList>div>img{
+    height: 100%;
+}
+
+.empty-cameraList>h2{
+    font-weight: normal;
+}
+
+/* --------------- SLIDER BUTTONS ------------*/
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    border: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(228, 60, 60);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+    border: 0;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    border: 0;
+}
+
+.switch input:checked + .slider {
+background-color: rgb(25, 209, 25);
+}
+
+.switch input:focus + .slider {
+box-shadow: 0 0 1px rgb(25, 209, 25);
+}
+
+.switch input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* --------------- SIDEBAR -------------*/
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 7%;
+    height: 100vh;
+    margin-left: auto;
+    padding-top: 4rem;
+    border-right: 1px solid rgb(0, 0, 0);
+    background-color: #def;
+    position: fixed;
+}
+
+.sidebar>div:first-child{
+    margin-bottom: 4rem;
+    background-color: yellow;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+}
+
+.sidebar>div:last-child{
+    margin-top: auto;
+    margin-bottom: 10rem;
+}
+
+.sidebar>div:first-child>img{
+    width: 70%;
+}
+
+.sidebar>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 35%;
+    margin-bottom: 2.5rem;
+    cursor: pointer;
+}
+
+.sidebar>div>img{
+    width: 100%;
+    height: 100%;
+}
+
+#notifications, #power{
+    display: inline-grid;
+}
+
+#notifications>img, #notifications>div, #power>img, #power>div{
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+}
+
+#notifications>div, #power>div{
+    align-self: flex-start;
+    justify-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    font-size: .6rem;
+    font-weight: bold;
+    color: white;
+    height: 1.1rem;
+    width: 1.1rem;
+    margin: 0;
+    border-radius: 50%;
+}
+
+/* -------------------- MODALS ---------------------- */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-header>div{
+    margin-left: 1rem;
+}
+
+.modal-header>div>div{
+    width:100%;
+}
+
+.close {
+    color: black;
+    margin-left: auto;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/*------------ POP UPS ---------------*/
+
+.popup {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #fefefe;
+    margin: 0% 30%;
+    padding: 0;
+    width: 45%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+    padding: 2px 16px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+.popup-content>div{
+    margin-right: 1rem;
+    width: 8%;
+}
+
+.popup-content>div>img{
+    width: 100%;
+}
+
+.popup-content>h2{
+    font-size: 1.3rem;
+}
+
+.popup .close {
+    color: black;
+    margin-left: auto;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.popup .close:hover, .popup .close:focus {
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup.error{
+    border: 3px solid red;
+}
+
+.popup.alert{
+    border: 3px solid orange;
+}
+
+.popup.success{
+    border: 3px solid rgb(59,181,74);
+}
+
+
+/*--------------------- CUSTOM MODALS -------------------*/
+
+#modalAddCamera .modal-content{
+    margin: 5% auto;
+    width: 40%;
+}
+
+#modalAddCamera .modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modalAddCamera .modal-body>input{
+    margin: 1rem 0;
+    width: 80%;
+    height: 3rem;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding-left: 1rem;
+}
+
+#modalAddCamera .modal-body>div{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+#modalAddCamera .modal-body>div>button{
+    width: 30%;
+    height: 2.5rem;
+    background-color: #888;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    font-weight: bold;
+}
+
+#modalAddCamera .modal-body>div>button:last-child{
+    background-color: rgb(18,205,212);
+    color: black;
+}
+
+#modalAddCamera .modal-body>div>button:hover, 
+#modalAddCamera .modal-body>div>button:focus{
+    background:lightgray;
+    color: black;
+    cursor: pointer;
+}
+
+#modalAddCamera .modal-header,
+#modalAddCamera .modal-footer{
+    background-color: rgb(18,205,212);
+    color: black;
+}
+
+#confirmExclusion .modal-content{
+    margin: 15% auto;
+    width: 40%;
+}
+
+#confirmExclusion .modal-header,
+#confirmExclusion .modal-footer{
+    background-color: rgb(18,205,212);
+    color: white;
+}
+
+#confirmExclusion .modal-header{
+    justify-content: center;
+}
+
+#confirmExclusion .modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#confirmExclusion .modal-body>p{
+    font-size: 1.3rem;
+}
+
+#confirmExclusion .modal-body>div{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+#confirmExclusion .modal-body>div>button{
+    width: 30%;
+    height: 2.5rem;
+    background-color: #888;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    font-weight: bold;
+}
+
+#confirmExclusion .modal-body>div>button:last-child{
+    background-color: rgb(18,205,212);
+    color: black;
+}
+
+#confirmExclusion .modal-body>div>button:hover, 
+#confirmExclusion .modal-body>div>button:focus{
+    background:lightgray;
+    color: black;
+    cursor: pointer;
+}

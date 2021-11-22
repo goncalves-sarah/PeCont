@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/home.css">
+    <title>FlowIt</title>
+</head>
+
+<body>
+    <div class="modal" id="modalAddCamera">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nova Câmera</h2>
+                <div>
+                    <img src="../images/camera.svg" alt="">
+                </div>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="Nome da Câmera" id="name">
+                <input type="text" placeholder="Endereço IP" id="ip">
+                <div>
+                    <button class="cancel">CANCELAR</button>
+                    <button class="save">SALVAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="confirmExclusion">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ATENÇÃO</h2>
+            </div>
+            <div class="modal-body">
+                <p>Você realmente deseja excluir esta câmera?</p>
+                <div>
+                    <button class="cancel">CANCELAR</button>
+                    <button class="confirm">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup alert" id="fillAll">
+        <div class="popup-content">
+            <div>
+                <img src="../images/alerta.png" alt="">
+            </div>
+            <h2>Favor preencher todos os campos</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup alert" id="faultIP">
+        <div class="popup-content">
+            <div>
+                <img src="../images/alerta.png" alt="">
+            </div>
+            <h2>Endereço IP inválido</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup error" id="alreadyExists">
+        <div class="popup-content">
+            <div>
+                <img src="../images/erro.png" alt="">
+            </div>
+            <h2>Câmera já cadastrada</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup error" id="errorDelete">
+        <div class="popup-content">
+            <div>
+                <img src="../images/erro.png" alt="">
+            </div>
+            <h2>Erro ao deletar câmera, tente novamente mais tarde</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup error" id="errorConection">
+        <div class="popup-content">
+            <div>
+                <img src="../images/erro.png" alt="">
+            </div>
+            <h2>Erro, não foi possível estabelecer uma conexão com a câmera</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup error" id="errorConnectToServer">
+        <div class="popup-content">
+            <div>
+                <img src="../images/erro.png" alt="">
+            </div>
+            <h2>Erro, não foi possível estabelecer uma conexão com o servidor</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="addedCamera">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Câmera adicionada com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="deletedCamera">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Câmera deletada com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="successConnect">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Câmera reconectada com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="successDisconnect">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Câmera desconectada com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="successTurnOn">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Sistema ligado com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="successTurnOff">
+        <div class="popup-content">
+            <div>
+                <img src="../images/check.png" alt="">
+            </div>
+            <h2>Sistema desligado com sucesso</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div id="user-icon">
+                <img src="../images/user.svg" alt="user">
+            </div>
+            <div id="notifications">
+                <img src="../images/notification.svg" alt="">
+                <div class="off">1</div>
+            </div>
+            <div id="power">
+                <img src="../images/power.svg" alt="">
+                <div class="off"></div>
+            </div>
+            <div id="config">
+                <img src="../images/config.svg" alt="">
+            </div>
+            <div id="sign-out">
+                <img src="../images/sign_out.svg" alt="">
+            </div>
+        </div>
+        <div class="count-container">
+            <div class="progress-circle">
+                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:90">
+                </div>
+                <p>CAPACIDADE</p>
+            </div>
+            <div class="summary">
+                <h2>Hoje:</h2>
+                <div>
+                    <div class="flow">
+                        <p id="entered"> + 5 pessoas</p>
+                        <p id="left"> - 2 pessoas</p>
+                    </div>
+                    <div class="statistics">
+                        <h2>+20%</h2>
+                        <p>em relação a semana anterior</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="camera-container">
+            <div class="camera-header">
+                <h2>Câmeras</h2>
+                <div id="add-camera">+</div>
+            </div>
+            <div class="camera-list">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../scripts/home.js"></script>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>FlowIt</title>
+</head>
+
+<body>
+    <div class="popup alert" id="fillAll">
+        <div class="popup-content">
+            <div>
+                <img src="images/alerta.png" alt="">
+            </div>
+            <h2>Favor preencher todos os campos</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup error" id="faultLogin">
+        <div class="popup-content">
+            <div>
+                <img src="images/erro.png" alt="">
+            </div>
+            <h2>Dados inseridos inválidos</h2>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+    <div class="popup success" id="successLogin">
+        <div class="popup-content">
+            <div>
+                <img src="images/check.png" alt="">
+            </div>
+            <h2>Login efetuado com sucesso</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="column">
+            <div class="content">
+                <div>
+                    <div id="user-icon">
+                        <img src="images/user.svg" alt="">
+                    </div>
+                    <form id="form">
+                        <div>
+                            <img src="images/username.svg" alt="">
+                            <input type="text" name="username" id="username" placeholder="Usuário">
+                        </div>
+                        <div>
+                            <img src="images/password.svg" alt="">
+                            <div>
+                                <input type="password" name="password" id="password" placeholder="Senha">
+                                <a href="" id="showPassword">
+                                    <img src="images/eye.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <a href="">Esqueci minha senha</a>
+                        <button id="login" type='button'>LOGIN</button>
+                    </form>
+
+                </div>
+            </div>
+            <footer>
+                Copyrights by Sarah Gonzales & cia
+            </footer>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="scripts/index.js"></script>
+
+</html>

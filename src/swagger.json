@@ -359,14 +359,13 @@
                 "summary" : "Turn off all the user cameras",
                 "description" : "Turn off all of the cameras assigned to a specific user, from all their locations",
                 "responses" : {
-                    "responses" : {
-                        "200" : {
-                            "description" : "Disconnected"
-                        },
-                        "400" : {
-                            "description" : "Process doesn't exists"
-                        }
+                    "200" : {
+                        "description" : "Disconnected"
+                    },
+                    "400" : {
+                        "description" : "Process doesn't exists"
                     }
+                    
                 }
             }
         },

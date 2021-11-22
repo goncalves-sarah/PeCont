@@ -18,7 +18,7 @@ def center(x, y, w, h):
 
 camera_ip = str(sys.argv[1])
 camera_id = str(sys.argv[2])
-token = str(sys.argv[3])
+token = "123" #str(sys.argv[3])
 
 cap = cv2.VideoCapture(camera_ip) 
 
@@ -42,10 +42,9 @@ time_start = time.time()
 while 1:
     try:
         ret, frame = cap.read()
-    
+      
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         #cv2.imshow("gray", gray)
-        
     except:
         break
 
@@ -133,15 +132,15 @@ while 1:
     current_time = time.time()
     current_interval = current_time - time_start
     
-    if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
-        time_start = time.time()
+    # if(current_interval >= time_interval): # a cada X min ele envia uma informaçõa
+    #     time_start = time.time()
 
-        requests.post("http://localhost:8000/locations/update/total",json = {
-            "camera_id" : camera_id,
-            "new_amount" : str(total)
-        }, headers={'Authorization': f'{token}'})
+    #     requests.post("http://localhost:8000/locations/update/total",json = {
+    #         "camera_id" : camera_id,
+    #         "new_amount" : str(total)
+    #     }, headers={'Authorization': f'{token}'})
 
-        sys.stdout.flush()
+    #     sys.stdout.flush()
 
     if cv2.waitKey(30) & 0xFF == ord('q'):
         break

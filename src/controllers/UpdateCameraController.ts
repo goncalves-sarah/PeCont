@@ -5,7 +5,7 @@ class UpdateCameraController {
 
     async handle(req: Request, res: Response) {
         const { camera_id, atribute } = req.body;
-       
+        
         const updateCameraController = new UpdateCameraService();
 
         const cam = await updateCameraController.execute({ camera_id , atribute });

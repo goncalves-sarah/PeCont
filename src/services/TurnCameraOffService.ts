@@ -20,11 +20,7 @@ class TurnCameraOffService {
         });
 
         if(status != 0 && pid != 0) {
-            await camerasRepository.update(id,{
-                status: 0,
-                pid: 0
-            })
-            
+           
             try {
                 
                 process.kill(pid,0)
@@ -34,6 +30,11 @@ class TurnCameraOffService {
                 throw new Errors(400,"Process doesn't exists")
             }    
         }
+        
+        await camerasRepository.update(id,{
+            status: 0,
+            pid: 0
+        })
     }
 }
 

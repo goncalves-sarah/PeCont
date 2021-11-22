@@ -21,7 +21,7 @@ class TurnOffAllCamerasService {
                 'status' : 1
             }
         });
-
+       
        cameras.map(async c => {
             await camerasRepository.update(c.id,{
                 status: 0,
@@ -46,6 +46,19 @@ class TurnOffAllCamerasService {
                 total_people_inside: 0
         })
        });
+
+       const camerasDisconnected = await camerasRepository.find({
+        where: {
+            'user' : user_id,
+            'status' : 0
+        }
+        });
+
+        camerasDisconnected.filter(c => c.pid != 0).forEach(c => {
+            camerasRepository.update(c.id, {
+                pid: 0
+            })
+        })
 
     }
 }

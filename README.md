@@ -40,7 +40,7 @@
   $ git clone https://github.com/goncalves-sarah/PeCont
 ```
 
-2. Executando a Aplicação:
+2. Executando a aplicação:
 
 ```sh
   # Instalando as dependências do projeto.

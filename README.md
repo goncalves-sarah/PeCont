@@ -32,8 +32,7 @@
   - É **necessário** possuir o **[Node.js](https://nodejs.org/en/)** instalado no computador
   - É **necessário** possuir o **[Git](https://git-scm.com/)** instalado e configurado no computador
   - É **necessário** possuir o **[Python](https://www.python.org/)** instalado e configurado no computador
-  - É **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
-  - É **preciso** ter o **[Axios](https://axios-http.com/docs/intro)** instalado.
+  - É **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**
   - Por fim, é **essencial** ter o **[OpenCV](https://pypi.org/project/opencv-python/)** instalado de forma global na máquina (Instalado pelo pip do Python) 
 
 1. Faça um clone do repositório:
@@ -45,22 +44,21 @@
 2. Executando a aplicação:
 
 ```sh
+  # API
+  $ cd backend
   # Instalando as dependências do projeto.
   $ yarn # ou npm install
-```
-
-Back-end
-```sh
+  
   # Inicie a API
-  # cd /backend
-  $ yarn start 
-```
-
-Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/http-server), porém você pode usar o método de sua prefêrencia.
-
-Front-end
-```sh
-  # Inicie o front-end
-  # cd /fronted
+  $ yarn start # ou npm start
+  
+  # Aplicação Web
+  $ cd frontend
+  # Instalando as dependências do projeto.
+  $ yarn # ou npm install
+  
+  # Inicie a aplicação web
   $ http-server -c-1
 ```
+Recomenda-se rodar o front-end com [HTTP-Server](https://www.npmjs.com/package/http-server), porém você pode usar o método de sua prefêrencia.
+

@@ -13,7 +13,7 @@
 
 ## :book: Sobre
 
-**PECont** is the backend for a Software Engineering project that aims to count the total amount of people inside a given location. It works by using the video stream from a camera to capture the movements of the people coming in and out of the place.
+**PECont** is a Software Engineering project that aims to count the total amount of people inside a given location. It works by using the video stream from a camera to capture the movements of the people coming in and out of the place.
   
 ## :computer: Tecnologias
 

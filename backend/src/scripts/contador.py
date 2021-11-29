@@ -7,7 +7,7 @@ import requests
 import re
 
 time_list = []
-time_interval = 0.25 * 60 # a cada 15s
+time_interval = 0.20 * 60 # a cada 15s
 
 def center(x, y, w, h):
     x1 = int(w / 2)

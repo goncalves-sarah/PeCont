@@ -319,7 +319,7 @@ async function countPeople(e) {
             errorConnectToServer.style.display = 'block';
         });
 
-        await sleep(16000);
+        await sleep(13000);
     }
 };
 
@@ -358,10 +358,10 @@ modalAddCamera.querySelector('.save').addEventListener('click', function (e) {
     }
 
     //checa se o IP esta formatado corretamente
-    if (!(/^\d\d\d\.\d\d\d\.\d\d\.\d/.test(ip))) {
-        faultIP.style.display = "block";
-        return;
-    }
+    // if (!(/^\d\d\d\.\d\d\d\.\d\d\.\d/.test(ip))) {
+    //     faultIP.style.display = "block";
+    //     return;
+    // }
 
     //salvar camera no banco de dados [POST]
     axios({

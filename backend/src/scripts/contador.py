@@ -124,10 +124,6 @@ while 1:
                 if c > 0:
                     cv2.line(frame,detect[c-1],l,(0,0,255),1)
 
-    cv2.putText(frame, "TOTAL: "+str(total), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255),2)
-    cv2.putText(frame, "ENTRANDO: "+str(inside), (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0),2)
-    cv2.putText(frame, "SAINDO: "+str(outside), (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255),2)
-
     cv2.imshow("frame", frame)
 
     current_time = time.time()

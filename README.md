@@ -52,6 +52,9 @@
   # Inicie a API
   $ yarn start # ou npm start
   
+  # Acessar Documentação com Swagger
+  $ acessar a rota /api-docs
+  
   # Aplicação Web
   $ cd frontend
   # Instalando as dependências do projeto.
